@@ -1,18 +1,16 @@
-import requests
-import json
+import time
+import selenium
+from selenium import webdriver
 
+browser = webdriver.Firefox()
+browser.get("http://lbarberiscanoni.github.io/smallCapAnalyzer/")
 
-firebaseToken = "tMPTJNs7xL0hZDcEhYyPlUPkkdMqgxGJCnubtOde"
-databaseURL = "https://stock-screener.firebaseio.com/simplyWS"
-databaseURL += "?auth=" + firebaseToken
+time.sleep(2)
 
-name = raw_input("name: ")
-ticker = raw_input("ticker: ")
+companies = browser.find_elements_by_class_name("btn-default")
+i = 0
+for company in companies:
+    i += 1
+    company.click()
+    print str(i) + " done"
 
-stock = {
-        "companyName": name,
-        "stockTicker": ticker,
-}
-
-stockPushed = requests.post(url = databaseURL, data = json.dumps(stock))
-str(json.loads(stockPushed.content).values()[0])

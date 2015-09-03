@@ -9,7 +9,6 @@ $(document).ready(function() {
         $(".container h3:last").addClass("btn btn-default");
         $(".container .btn:last").click(function() {
             var thisCompanyID = $(this).text();
-            alert(thisCompanyID);
             companyList.child(thisCompanyID).update({
                 "id": thisCompanyID,
             });
