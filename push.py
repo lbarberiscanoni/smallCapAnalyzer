@@ -13,4 +13,3 @@ for company in companies:
     i += 1
     company.click()
     print str(i) + " done"
-
