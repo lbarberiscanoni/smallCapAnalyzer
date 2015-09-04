@@ -3,7 +3,7 @@ import selenium
 from selenium import webdriver
 
 browser = webdriver.Firefox()
-browser.get("http://lbarberiscanoni.github.io/smallCapAnalyzer/")
+browser.get("http://lbarberiscanoni.github.io/smallCapAnalyzer/scriptsUsedToMakeTheDB/dbInterface.html")
 
 time.sleep(2)
 
