@@ -7,7 +7,7 @@ browser.get("http://lbarberiscanoni.github.io/smallCapAnalyzer/dbInterface/dbInt
 
 time.sleep(2)
 
-companies = browser.find_elements_by_class_name("btn-default")
+companies = browser.find_elements_by_class_name("company")
 i = 0
 for company in companies:
     i += 1
