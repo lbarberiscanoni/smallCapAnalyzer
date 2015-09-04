@@ -1,10 +1,23 @@
 doctype html
-head
+head 
+    title Small Cap Analyzer
     link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css")
     script(src="//code.jquery.com/jquery-1.11.3.min.js")
     script(src="//code.jquery.com/jquery-migrate-1.2.1.min.js")
     script(src="https://cdn.firebase.com/js/client/2.2.9/firebase.js")
 body
     h1.text-center Small Cap Analyzer
+        a(href="scriptsUsedToMakeTheDB/dbInterface.html").btn.btn-default DB Interface
     .container
-    script(src="cleanUp.js")
+        .row#controls
+            .col-md-3
+                select.form-control#db
+                    option Pick a DB
+                    option Yahoo
+                    option Simply Wall Street
+            .col-md-3
+                select.form-control#parameter
+                    option Pick a Parameter
+        .row#stockDisplay
+    script(src="scripts/parameters_functions.js")
+    script(src="scripts/parameters.js")
