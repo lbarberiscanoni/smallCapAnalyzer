@@ -3,7 +3,7 @@ import selenium
 from selenium import webdriver
 
 browser = webdriver.Firefox()
-browser.get("http://lbarberiscanoni.github.io/smallCapAnalyzer/dbInterface/dbInterface.html")
+browser.get("http://localhost:8000/dbInterface/dbInterface.html")
 
 time.sleep(2)
 
@@ -12,4 +12,4 @@ i = 0
 for company in companies:
     i += 1
     company.click()
-    print str(i) + " done"
+    print str(i) + "/" + str(len(companies)) + " done"

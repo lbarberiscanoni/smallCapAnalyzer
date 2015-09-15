@@ -14,7 +14,7 @@ var addParameterOptions = function(a) {
         var companyID = snapshot.key();
         a.child(companyID).on("child_added", function(snapshot) {
             parameter = snapshot.key();
-            if (parameter != "companyName" && parameter != "id" && parameter != "ticker" && parameter != "stockTicker")  {
+            if (parameter != "companyName" && parameter != "id" && parameter != "ticker" && parameter != "stockTicker" && parameter != "tile" && parameter != "url")  {
                 $("#parameter").append("<option>" + parameter + "</option>");
             };
         });
@@ -35,10 +35,20 @@ var showStocksWithinRange = function(section, parameter, db) {
         var company = snapshot.val();
 
         var parseStocks = function(companyParameter) {
-            if (parseInt(from) < parseInt(companyParameter) < parseInt(to)) {
-                $("#" + section + "Data").append("<h3 class='btn btn-default'>" + company.companyName + "</h3><br>"); 
+            if (parameter == "simplyWS") {
+                if (from <= companyParameter && companyParameter <= to) {
+                    $("#" + section + "Data").append("<h3 class='btn btn-default'>" + company.companyName + "</h3><br>"); 
+                    $("#" + section + "Data h3:last").click(function(){
+                        window.open(company.url);
+                    });
+                };
             } else {
-                console.log("from: " + from + " company: " + companyParameter + " to: " + to);
+                if (parseInt(from) <= parseInt(companyParameter) && parseInt(companyParameter) <= parseInt(to)) {
+                    $("#" + section + "Data").append("<h3 class='btn btn-default'>" + company.companyName + "</h3><br>"); 
+                    $("#" + section + "Data h3:last").click(function(){
+                        window.open(company.url);
+                    });
+                };
             };
         };
 
@@ -55,11 +65,14 @@ var showStocksWithinRange = function(section, parameter, db) {
             case "past":
                 parseStocks(company.past);
                 break;
+            case "overallScore":
+                parseStocks(company.overallScore);
+                break;
             case "value":
                 parseStocks(company.value);
                 break;
-            case "currenSharePrice":
-                parseStocks(company.currenSharePrice);
+            case "currentSharePrice":
+                parseStocks(company.currentSharePrice);
                 break;
             case "industryPriceBook":
                 parseStocks(company.industryPriceBook);

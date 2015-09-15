@@ -7,10 +7,10 @@ head
     script(src="https://cdn.firebase.com/js/client/2.2.9/firebase.js")
 body
     h1.text-center Small Cap Analyzer
-        a(href="dbInterface/dbInterface.html").btn.btn-default DB Interface
-        a(href="views/parser.html").btn.btn-default Parser
+        a(href="../index.html").btn.btn-default HOME
     .container
         .row#controls
+            .col-md-3
             .col-md-3
                 select.form-control#db
                     option Pick a DB
@@ -19,6 +19,16 @@ body
             .col-md-3
                 select.form-control#parameter
                     option Pick a Parameter
-        .row#stockDisplay
-    script(src="scripts/parameters_functions.js")
-    script(src="scripts/parameters.js")
+            .col-md-3
+        .row
+            .col-md-2
+                h2.text-center Results
+                #stockDisplay
+            .col-md-4
+                h2.text-center Fundamentals
+                #snowFlake
+            .col-md-6
+                h2.text-center Market Data
+                #marketSnapshot
+    script(src="../scripts/parser.js")
+
