@@ -15,13 +15,13 @@ var addParameterOptions = function(database) {
 
 var showStocksWithinParameter = function(database, parameter) {
     $("#stockDisplay").empty();
-    database.on("child_added", function(snapshot) {
-        var selectedParameter = $("#parameter").val();
+    var selectedParameter = $("#parameter").val();
+    database.orderByChild(selectedParameter).on("child_added", function(snapshot) {
         var company = snapshot.val();
 
         var addStock = function(a) {
-            $("#stockDisplay").append("<a class='btn btn-default stock'>" + company.companyName + "<br>" + selectedParameter + ": " + a + "</a><br>");
-            $("#stockDisplay a:last").click(function() {
+            $("#stockDisplay").prepend("<a class='btn btn-default stock'>" + company.companyName + "<br>" + selectedParameter + ": " + a + "</a><br>");
+            $("#stockDisplay a:first").click(function() {
                 $("#snowFlake").empty();
                 $("#marketSnapshot").empty();
                 $("#snowFlake").append("<img src='" + company.tile + "'></img>");
