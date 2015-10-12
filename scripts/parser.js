@@ -20,13 +20,23 @@ var showStocksWithinParameter = function(database, parameter) {
         var company = snapshot.val();
 
         var addStock = function(a) {
-            $("#stockDisplay").prepend("<a class='btn btn-default stock'>" + company.companyName + "<br>" + selectedParameter + ": " + a + "</a><br>");
-            $("#stockDisplay a:first").click(function() {
-                $("#snowFlake").empty();
-                $("#marketSnapshot").empty();
-                $("#snowFlake").append("<img src='" + company.tile + "'></img>");
-                $("#marketSnapshot").append("<iframe src='" + company.marketSnapshot + "' width='600' height='520'></iframe>");
-            });
+            if (a == company.overallScore) {
+                $("#stockDisplay").append("<a class='btn btn-default stock'>" + company.companyName + "<br>" + selectedParameter + ": " + a + "</a><br>");
+                $("#stockDisplay a:last").click(function() {
+                    $("#snowFlake").empty();
+                    $("#marketSnapshot").empty();
+                    $("#snowFlake").append("<img src='" + company.tile + "'></img>");
+                    $("#marketSnapshot").append("<iframe src='" + company.marketSnapshot + "' width='600' height='520'></iframe>");
+                });
+            } else {
+                $("#stockDisplay").prepend("<a class='btn btn-default stock'>" + company.companyName + "<br>" + selectedParameter + ": " + a + "</a><br>");
+                $("#stockDisplay a:first").click(function() {
+                    $("#snowFlake").empty();
+                    $("#marketSnapshot").empty();
+                    $("#snowFlake").append("<img src='" + company.tile + "'></img>");
+                    $("#marketSnapshot").append("<iframe src='" + company.marketSnapshot + "' width='600' height='520'></iframe>");
+                });
+            };
         };
 
         switch (selectedParameter) {
